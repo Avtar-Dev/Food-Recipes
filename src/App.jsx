@@ -5,7 +5,7 @@ import Foods from "./Components/Foods";
 import Home from "./Components/Home";
 import Recipes from "./Components/Recipes";
 import Footer from "./Components/Footer";
-import NewRecipe from "./Components/NewRecipe";
+import Explore from "./Components/Explore";
 function App() {
   return (
     <>
@@ -16,7 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/foods" element={<Foods />} />
             <Route path="/recipes" element={<Recipes />} />
-            <Route path="/newRecipe" element={<NewRecipe />} />
+            <Route path="/explore" element={<Explore />} />
           </Routes>
           <Footer />
         </Router>

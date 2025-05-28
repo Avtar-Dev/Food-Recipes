@@ -29,7 +29,9 @@ const Home = () => {
             onClick={() => navigate("/recipes")}>
             Browse Recipes
           </button>
-          <button className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-xl cursor-pointer hover:scale-105 transition-transform duration-300">
+          <button
+            onClick={() => navigate("/newRecipe")}
+            className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-xl cursor-pointer hover:scale-105 transition-transform duration-300">
             Submit Your Own
           </button>
         </div>
@@ -77,7 +79,7 @@ const Home = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-4 py-2 rounded-xl border border-gray-300"
+            className="px-4 py-2 rounded-xl border border-gray-300 focus:ring focus:ring-orange-500 focus:outline-none"
           />
           <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl cursor-pointer hover:scale-103 transition-transform duration-100">
             Subscribe

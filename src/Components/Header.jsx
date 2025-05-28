@@ -37,8 +37,8 @@ const Header = () => {
           <NavLink to="/recipes" className={navLinkStyle}>
             Recipes
           </NavLink>
-          <NavLink to="/newRecipe" className={navLinkStyle}>
-            New Recipe
+          <NavLink to="/explore" className={navLinkStyle}>
+            Explore
           </NavLink>
         </nav>
 
@@ -64,11 +64,8 @@ const Header = () => {
           <NavLink to="/recipes" onClick={toggleMenu} className={navLinkStyle}>
             Recipes
           </NavLink>
-          <NavLink
-            to="/newRecipe"
-            onClick={toggleMenu}
-            className={navLinkStyle}>
-            New Recipe
+          <NavLink to="/explore" onClick={toggleMenu} className={navLinkStyle}>
+            Explore
           </NavLink>
         </div>
       )}

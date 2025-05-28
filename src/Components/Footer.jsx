@@ -22,9 +22,9 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="justify-self-start flex flex-col items-center sm:w-1/4">
+        <div className="justify-self-start flex flex-col items-center sm:w-1/4 max-sm:min-w-full">
           <h4 className="text-xl font-semibold mb-2">Quick Links</h4>
-          <ul className="max-sm:flex max-sm:items-center max-sm:justify-center max-sm:gap-2 font-semibold sm:space-y-1">
+          <ul className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:justify-center max-sm:gap-2 font-semibold sm:space-y-1">
             <li className={linkClass}>
               <a href="/">Home</a>
             </li>
@@ -35,7 +35,7 @@ const Footer = () => {
               <a href="/recipes">Recipes</a>
             </li>
             <li className={linkClass}>
-              <a href="/newRecipe">New Recipe</a>
+              <a href="/explore">Explore</a>
             </li>
           </ul>
         </div>
