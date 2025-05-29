@@ -6,6 +6,8 @@ import Home from "./Components/Home";
 import Recipes from "./Components/Recipes";
 import Footer from "./Components/Footer";
 import Explore from "./Components/Explore";
+import NewRecipe from "./Components/NewRecipe";
+import SubmitRecipes from "./Components/SubmitRecipes";
 function App() {
   return (
     <>
@@ -17,6 +19,8 @@ function App() {
             <Route path="/foods" element={<Foods />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/newRecipe" element={<NewRecipe />} />
+            <Route path="/submitRecipes" element={<SubmitRecipes />} />
           </Routes>
           <Footer />
         </Router>

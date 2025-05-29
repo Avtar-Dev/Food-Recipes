@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -28,9 +29,23 @@ const Recipes = () => {
       {loading ? (
         <Loader />
       ) : (
-        <h1 className="text-4xl font-extrabold text-center text-orange-600 mb-12">
-          🍽️ Delicious Recipes
-        </h1>
+        <div>
+          <h1 className="text-4xl font-extrabold text-center text-orange-600 mb-12">
+            🍽️ Delicious Recipes
+          </h1>
+          <div className="text-center mb-10 flex gap-2 justify-center">
+            <Link
+              to="/newRecipe"
+              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-full shadow-md transition duration-300 ease-in-out">
+              🍳 Submit Your Recipe
+            </Link>
+            <Link
+              to="/submitRecipes"
+              className="inline-block bg-gray-200 hover:bg-gray-300 text-black font-semibold px-6 py-3 rounded-full shadow-md transition duration-300 ease-in-out">
+              Community Recipes
+            </Link>
+          </div>
+        </div>
       )}
 
       <div className="space-y-12">

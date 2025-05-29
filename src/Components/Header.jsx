@@ -8,8 +8,18 @@ const Header = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const navLinkStyle =
-    "block text-white font-medium px-4 py-2 rounded-md transition hover:bg-white hover:text-[#ff6347]";
+  const navLinkStyle = ({ isActive }) =>
+    `block font-medium px-4 py-2 rounded-md transition
+   hover:bg-white hover:text-[#ff6347]
+   ${isActive ? "text-blue-500" : "text-white"}`;
+
+  // const navLinkStyle = ({ isActive }) =>
+  //   `block px-4 py-2 font-medium rounded-full transition
+  //  ${
+  //    isActive
+  //      ? "bg-white text-[#ff6347] shadow-md"
+  //      : "text-white hover:bg-white hover:text-[#ff6347]"
+  //  }`;
 
   return (
     <header className="bg-[#ff6347] shadow-md sticky top-0 z-50">
@@ -19,7 +29,7 @@ const Header = () => {
           <img
             src={tasty}
             alt="Tasty Foods"
-            className="w-12 h-12 object-contain"
+            className="w-12 h-12 object-contain "
           />
           <span className="text-white text-2xl font-bold tracking-wide">
             Tasty Foods

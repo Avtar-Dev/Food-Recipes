@@ -4,6 +4,8 @@ export default function NewRecipe() {
   const [recipe, setRecipe] = useState({
     name: "",
     ingredients: "",
+    description: "",
+    equipments: "",
     steps: "",
     category: "",
     image: null,
@@ -17,9 +19,36 @@ export default function NewRecipe() {
     }));
   };
 
+  const fetchData = async () => {
+    const recipeData = JSON.stringify(recipe);
+
+    try {
+      const response = await fetch(
+        "http://192.168.1.66:3000/api/submitrecipe",
+        {
+          method: "POST",
+          body: recipeData,
+        }
+      );
+
+      const data = await response.json();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Recipe submitted:", recipe);
+    setRecipe({
+      name: "",
+      description: "",
+      ingredients: "",
+      equipments: "",
+      steps: "",
+      category: "",
+      image: null,
+    });
     alert("Recipe submitted successfully!");
   };
 
@@ -42,6 +71,7 @@ export default function NewRecipe() {
               type="text"
               id="name"
               name="name"
+              placeholder="Recipe Name"
               value={recipe.name}
               onChange={handleChange}
               required
@@ -72,6 +102,43 @@ export default function NewRecipe() {
             </select>
           </div>
 
+          {/* Description */}
+          <div>
+            <label
+              htmlFor="description"
+              className="block text-sm font-semibold text-gray-700 mb-1">
+              Description
+            </label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder="Description"
+              value={recipe.description}
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+          </div>
+
+          {/* Equipments */}
+          <div>
+            <label
+              htmlFor="equipments"
+              className="block text-sm font-semibold text-gray-700 mb-1">
+              Equipments
+            </label>
+            <textarea
+              id="equipments"
+              name="equipments"
+              placeholder="List each equipments on a new line"
+              value={recipe.equipments}
+              onChange={handleChange}
+              rows={4}
+              required
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
+          </div>
+
           {/* Ingredients */}
           <div>
             <label
@@ -84,7 +151,7 @@ export default function NewRecipe() {
               name="ingredients"
               value={recipe.ingredients}
               onChange={handleChange}
-              rows={4}
+              rows={5}
               placeholder="List each ingredient on a new line"
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
@@ -102,7 +169,7 @@ export default function NewRecipe() {
               name="steps"
               value={recipe.steps}
               onChange={handleChange}
-              rows={5}
+              rows={6}
               placeholder="Step-by-step instructions"
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"></textarea>
@@ -128,6 +195,7 @@ export default function NewRecipe() {
           {/* Submit Button */}
           <div className="pt-4">
             <button
+              onClick={fetchData}
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 cursor-pointer">
               📤 Submit Recipe
