@@ -9,7 +9,7 @@ const Recipes = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://192.168.1.66:3000/api/recipes");
+      const response = await fetch("http://192.168.1.70:3000/api/recipes");
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
       const result = await response.json();

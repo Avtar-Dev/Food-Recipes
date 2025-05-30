@@ -20,35 +20,61 @@ export default function NewRecipe() {
   };
 
   const fetchData = async () => {
-    const recipeData = JSON.stringify(recipe);
+    // const formData = new FormData();
 
-    try {
-      const response = await fetch(
-        "http://192.168.1.66:3000/api/submitrecipe",
-        {
-          method: "POST",
-          body: recipeData,
-        }
-      );
+    // formData.append("file", recipe.image);
+    // formData.append("name", recipe.name);
+    // formData.append("description", recipe.description);
+    // formData.append("ingredients", recipe.ingredients);
+    // formData.append("equipments", recipe.equipments);
+    // formData.append("steps", recipe.steps);
+    // formData.append("category", recipe.category);
 
-      const data = await response.json();
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    // try {
+    //   const response = await fetch(
+    //     "http://192.168.1.70:3000/api/submitrecipe",
+    //     {
+    //       method: "POST",
+    //       body: formData,
+    //     }
+    //   );
+
+    //   const data = await response.json();
+    //   console.log("API response:", data);
+    // } catch (error) {
+    //   console.error("Error fetching data:", error);
+    // }
+
+    const formData = new FormData();
+    formData.append("name", recipe.name);
+    formData.append("description", recipe.description);
+    formData.append("ingredients", recipe.ingredients);
+    formData.append("equipments", recipe.equipments);
+    formData.append("steps", recipe.steps);
+    formData.append("category", recipe.category);
+    formData.append("image", recipe.image);
+    // if (recipe.image) {
+    // }
+    console.log("formData:", formData);
+
+    await fetch("http://192.168.1.70:3000/api/submitrecipe", {
+      method: "POST",
+      body: formData,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Recipe submitted:", recipe);
-    setRecipe({
-      name: "",
-      description: "",
-      ingredients: "",
-      equipments: "",
-      steps: "",
-      category: "",
-      image: null,
-    });
+    // setRecipe({
+    //   name: "",
+    //   description: "",
+    //   ingredients: "",
+    //   equipments: "",
+    //   steps: "",
+    //   category: "",
+    //   image: null,
+    // });
     alert("Recipe submitted successfully!");
   };
 
