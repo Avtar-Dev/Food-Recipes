@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 export default function SubmitRecipes() {
   const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchRecipes = async () => {
+      setLoading(true);
       try {
         const res = await fetch("http://192.168.1.70:3000/api/submitrecipe");
         const data = await res.json();
         if (data.success) {
           setRecipes(data.recipes);
+          setLoading(false);
         }
       } catch (err) {
         console.error("Failed to fetch recipes:", err);
@@ -22,19 +26,25 @@ export default function SubmitRecipes() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-yellow-50 to-white py-10 px-4">
       <div className="max-w-6xl mx-auto text-center cursor-pointer">
-        <div className="flex gap-2 justify-center items-center">
-          <span role="img" aria-label="chef hat" className="text-5xl">
-            👩‍🍳
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-green-600 via-yellow-500 to-red-500 bg-clip-text text-transparent py-4 leading-tight flex items-center justify-center gap-3">
-            Community Recipes
-          </h1>
-        </div>
-        <p className="text-gray-600 text-lg max-w-xl mx-auto leading-8 tracking-wide italic font-medium drop-shadow-sm">
-          Discover and share mouth-watering recipes crafted by passionate food
-          lovers worldwide.
-        </p>
-
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {" "}
+            <div className="flex gap-2 justify-center items-center">
+              <span role="img" aria-label="chef hat" className="text-5xl">
+                👩‍🍳
+              </span>
+              <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-green-600 via-yellow-500 to-red-500 bg-clip-text text-transparent py-4 leading-tight flex items-center justify-center gap-3">
+                Community Recipes
+              </h1>
+            </div>
+            <p className="text-gray-600 text-lg max-w-xl mx-auto leading-8 tracking-wide italic font-medium drop-shadow-sm">
+              Discover and share mouth-watering recipes crafted by passionate
+              food lovers worldwide.
+            </p>
+          </>
+        )}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-3">
           {recipes.map(({ name, category, description, imageUrl }, idx) => (
             <div
@@ -63,59 +73,3 @@ export default function SubmitRecipes() {
     </div>
   );
 }
-
-// import { useEffect, useState } from "react";
-
-// const NewRecipe = () => {
-//   const [recipes, setRecipes] = useState([]);
-
-//   useEffect(() => {
-//     const fetchRecipes = async () => {
-//       try {
-//         const res = await fetch("http://192.168.1.70:3000/api/submitrecipe");
-//         const data = await res.json();
-//         if (data.success) {
-//           setRecipes(data.recipes);
-//         }
-//       } catch (err) {
-//         console.error("Failed to fetch recipes:", err);
-//       }
-//     };
-
-//     fetchRecipes();
-//   }, []);
-
-//   return (
-//     <div className="recipe-list">
-//       {recipes.map((recipe) => (
-//         <div key={recipe._id} className="recipe-card">
-//           <h2>{recipe.name}</h2>
-//           <p>
-//             <strong>Description:</strong> {recipe.description}
-//           </p>
-//           <p>
-//             <strong>Ingredients:</strong> {recipe.ingredients}
-//           </p>
-//           <p>
-//             <strong>Equipments:</strong> {recipe.equipments}
-//           </p>
-//           <p>
-//             <strong>Steps:</strong> {recipe.steps}
-//           </p>
-//           <p>
-//             <strong>Category:</strong> {recipe.category}
-//           </p>
-//           {recipe.imageUrl && (
-//             <img
-//               src={recipe.imageUrl}
-//               alt={recipe.name}
-//               // style={{ maxWidth: "300px", marginTop: "10px" }}
-//             />
-//           )}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default NewRecipe;
