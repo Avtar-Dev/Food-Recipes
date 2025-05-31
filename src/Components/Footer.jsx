@@ -58,7 +58,7 @@ const Footer = () => {
         {/* Social Media */}
         <div className="max-sm:flex max-sm:flex-col max-sm:items-center md:w-1/4">
           <h4 className="text-xl font-semibold mb-2">Follow Us</h4>
-          <div className="flex mt-2">
+          <div className="flex mt-2 sm:-ml-2">
             <a
               href="https://facebook.com"
               target="_blank"

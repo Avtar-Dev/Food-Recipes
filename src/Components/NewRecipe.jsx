@@ -20,31 +20,6 @@ export default function NewRecipe() {
   };
 
   const fetchData = async () => {
-    // const formData = new FormData();
-
-    // formData.append("file", recipe.image);
-    // formData.append("name", recipe.name);
-    // formData.append("description", recipe.description);
-    // formData.append("ingredients", recipe.ingredients);
-    // formData.append("equipments", recipe.equipments);
-    // formData.append("steps", recipe.steps);
-    // formData.append("category", recipe.category);
-
-    // try {
-    //   const response = await fetch(
-    //     "http://192.168.1.70:3000/api/submitrecipe",
-    //     {
-    //       method: "POST",
-    //       body: formData,
-    //     }
-    //   );
-
-    //   const data = await response.json();
-    //   console.log("API response:", data);
-    // } catch (error) {
-    //   console.error("Error fetching data:", error);
-    // }
-
     const formData = new FormData();
     formData.append("name", recipe.name);
     formData.append("description", recipe.description);
@@ -52,10 +27,7 @@ export default function NewRecipe() {
     formData.append("equipments", recipe.equipments);
     formData.append("steps", recipe.steps);
     formData.append("category", recipe.category);
-    formData.append("image", recipe.image);
-    // if (recipe.image) {
-    // }
-    console.log("formData:", formData);
+    formData.append("image", recipe.image); // file object
 
     await fetch("http://192.168.1.70:3000/api/submitrecipe", {
       method: "POST",
@@ -66,15 +38,15 @@ export default function NewRecipe() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Recipe submitted:", recipe);
-    // setRecipe({
-    //   name: "",
-    //   description: "",
-    //   ingredients: "",
-    //   equipments: "",
-    //   steps: "",
-    //   category: "",
-    //   image: null,
-    // });
+    setRecipe({
+      name: "",
+      description: "",
+      ingredients: "",
+      equipments: "",
+      steps: "",
+      category: "",
+      image: null,
+    });
     alert("Recipe submitted successfully!");
   };
 

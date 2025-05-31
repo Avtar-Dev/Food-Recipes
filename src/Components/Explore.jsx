@@ -1,24 +1,4 @@
-import React from "react";
-
-const recipeVideos = [
-  {
-    title: "Classic Italian Pasta",
-    thumbnail: "/videos/italian-thumb.jpg",
-    url: "https://www.youtube.com/embed/3AAdKl1UYZs",
-  },
-
-  {
-    title: "Spicy Indian Curry",
-    thumbnail: "/videos/indian-thumb.jpg",
-    url: "https://www.youtube.com/embed/W_AAKyVGwMs", // 👈 this is correct
-  },
-
-  {
-    title: "Authentic Japanese Ramen",
-    thumbnail: "/videos/japanese-thumb.jpg",
-    url: "https://www.youtube.com/embed/hA4yfpXeq8k",
-  },
-];
+import React, { useEffect, useState } from "react";
 
 const exploreItems = [
   "Recipe Videos",
@@ -30,12 +10,29 @@ const exploreItems = [
 ];
 
 export default function Explore() {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const res = await fetch("http://192.168.1.70:3000/api/youtube");
+        const data = await res.json();
+        if (data.success) {
+          setVideos(data.recipes);
+        }
+      } catch (err) {
+        console.error("Failed to fetch recipes:", err);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 via-yellow-50 to-white px-4 py-10">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-center bg-gradient-to-r from-red-500 via-green-500 to-yellow-500 bg-clip-text text-transparent mb-6">
-          Explore Recipes from Around the World
-        </h1>
+        <div className="text-4xl sm:text-5xl font-extrabold text-center bg-gradient-to-r from-red-500 via-green-500 to-yellow-500 bg-clip-text text-transparent mb-4">
+          <h1 className="p-2">Explore Recipes from Around the World</h1>
+        </div>
         <p className="text-center text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto mb-12 px-4 sm:px-0 transition duration-300 hover:text-gray-900">
           <span className="inline-block bg-yellow-100 px-2 py-1 rounded-md shadow-sm hover:bg-yellow-200 transition">
             Dive into delicious cultures
@@ -48,7 +45,7 @@ export default function Explore() {
 
         {/* Video Section */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {recipeVideos.map((video, index) => (
+          {videos.map((video, index) => (
             <div
               key={index}
               className="rounded-xl shadow-lg overflow-hidden bg-white hover:shadow-2xl transition duration-300">
@@ -61,7 +58,9 @@ export default function Explore() {
                 allowFullScreen></iframe>
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800">
-                  {video.title}
+                  {video.title.length > 40
+                    ? video.title.substring(0, 40) + "..."
+                    : video.title}
                 </h3>
               </div>
             </div>
