@@ -8,6 +8,7 @@ import Footer from "./Components/Footer";
 import Explore from "./Components/Explore";
 import NewRecipe from "./Components/NewRecipe";
 import SubmitRecipes from "./Components/SubmitRecipes";
+import RecipeDetails from "./Components/RecipeDetails.jsx";
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/explore" element={<Explore />} />
             <Route path="/newRecipe" element={<NewRecipe />} />
             <Route path="/submitRecipes" element={<SubmitRecipes />} />
+            <Route path="/recipe/:id" element={<RecipeDetails />} />
           </Routes>
           <Footer />
         </Router>

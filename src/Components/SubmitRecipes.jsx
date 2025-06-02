@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 export default function SubmitRecipes() {
   const [recipes, setRecipes] = useState([]);
@@ -25,7 +26,7 @@ export default function SubmitRecipes() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-yellow-50 to-white py-10 px-4">
-      <div className="max-w-6xl mx-auto text-center cursor-pointer">
+      <div className="max-w-6xl mx-auto text-center">
         {loading ? (
           <Loader />
         ) : (
@@ -46,27 +47,27 @@ export default function SubmitRecipes() {
           </>
         )}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-3">
-          {recipes.map(({ name, category, description, imageUrl }, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden">
-              <img
-                src={imageUrl}
-                alt={name}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-5 text-left">
-                <h3 className="text-xl font-bold text-green-900 tracking-wide mb-2 drop-shadow-sm">
-                  {name}
-                </h3>
-                <p className="text-sm text-green-700 font-medium uppercase tracking-wider mb-2">
-                  <strong>Category:</strong> {category}
-                </p>
-                <p className="text-base text-gray-700 leading-8 tracking-wide font-light italic max-w-3xl mx-auto sm:px-0 px-6 shadow-sm bg-yellow-50 rounded-md">
-                  {description}
-                </p>
+          {recipes.map(({ _id, name, category, description, imageUrl }) => (
+            <Link to={`/recipe/${_id}`} key={_id}>
+              <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden cursor-pointer">
+                <img
+                  src={imageUrl}
+                  alt={name}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5 text-left">
+                  <h3 className="text-xl font-bold text-green-900 tracking-wide mb-2 drop-shadow-sm">
+                    {name}
+                  </h3>
+                  <p className="text-sm text-green-700 font-medium uppercase tracking-wider mb-2">
+                    <strong>Category:</strong> {category}
+                  </p>
+                  <p className="text-base text-gray-700 leading-8 tracking-wide font-light italic max-w-3xl mx-auto sm:px-0 px-6 shadow-sm bg-yellow-50 rounded-md">
+                    {description}
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
