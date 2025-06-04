@@ -10,7 +10,7 @@ export default function SubmitRecipes() {
     const fetchRecipes = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://192.168.1.70:3000/api/submitrecipe");
+        const res = await fetch("http://192.168.1.68:3000/api/submitrecipe");
         const data = await res.json();
         if (data.success) {
           setRecipes(data.recipes);

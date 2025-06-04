@@ -29,7 +29,7 @@ export default function NewRecipe() {
     formData.append("category", recipe.category);
     formData.append("image", recipe.image); // file object
 
-    await fetch("http://192.168.1.70:3000/api/submitrecipe", {
+    await fetch("http://192.168.1.68:3000/api/submitrecipe", {
       method: "POST",
       body: formData,
     });
@@ -37,7 +37,7 @@ export default function NewRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Recipe submitted:", recipe);
+
     setRecipe({
       name: "",
       description: "",

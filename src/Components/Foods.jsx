@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaUtensils } from "react-icons/fa";
 export default function Foods() {
+  //  const [recipes, setRecipes] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchRecipes = async () => {
+  //     try {
+  //       const res = await fetch("http://192.168.1.68:3000/api/foods");
+  //       const data = await res.json();
+
+  //       if (data.success) {
+  //         setRecipes(data.recipes);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching recipes:", error);
+  //     }
+  //   };
+
+  //   fetchRecipes();
+  // }, []);
+
   const worldFoods = [
     {
       name: "Italian",
@@ -56,6 +75,7 @@ export default function Foods() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 hover:cursor-pointer">
           {worldFoods.map((food, index) => (
             <div
+              // onClick={()=>Handle(food.)}
               key={index}
               className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transform transition duration-300 hover:scale-103">
               {/* Image with zoom effect */}
@@ -87,3 +107,45 @@ export default function Foods() {
     </div>
   );
 }
+
+// {
+//   "name": "Butter Chicken",
+//   "description": "A rich and creamy tomato-based curry made with marinated grilled chicken pieces.",
+//   "ingredients": "Chicken, yogurt, butter, cream, tomatoes, garlic, ginger, garam masala, chili powder, coriander, cumin",
+//   "equipments": "Pan, bowl, blender, spatula, knife",
+//   "steps": "1. Marinate chicken in yogurt and spices.\n2. Grill the marinated chicken.\n3. Prepare tomato gravy with butter and spices.\n4. Blend the gravy for a smooth texture.\n5. Add grilled chicken and simmer.\n6. Finish with cream and serve hot with naan or rice.",
+//   "category": "indian",
+//   "image": {
+//     "name": "butter-chicken.jpg",
+//     "data": "",
+//     "contentType": "image/jpeg"
+//   }
+// }
+
+// {
+//   "name": "Spaghetti Carbonara",
+//   "description": "A classic Roman pasta dish made with eggs, cheese, pancetta, and black pepper.",
+//   "ingredients": "Spaghetti, pancetta, eggs, Parmesan cheese, black pepper, salt",
+//   "equipments": "Pot, pan, bowl, whisk, fork",
+//   "steps": "1. Cook spaghetti al dente.\n2. Sauté pancetta until crispy.\n3. Whisk eggs and Parmesan together.\n4. Mix hot pasta with pancetta and remove from heat.\n5. Quickly stir in egg mixture to create a creamy sauce.\n6. Season with black pepper and serve immediately.",
+//   "category": "italian",
+//   "image": {
+//     "name": "carbonara.jpg",
+//     "data": "",
+//     "contentType": "image/jpeg"
+//   }
+// }
+
+// {
+//   "name": "Pad Thai",
+//   "description": "Thailand’s famous stir-fried rice noodle dish with eggs, tofu, shrimp, and a tangy sauce.",
+//   "ingredients": "Rice noodles, shrimp, eggs, tofu, bean sprouts, garlic, peanuts, lime, tamarind paste, fish sauce, palm sugar",
+//   "equipments": "Wok, spatula, knife, bowl",
+//   "steps": "1. Soak rice noodles.\n2. Prepare sauce with tamarind paste, fish sauce, and palm sugar.\n3. Stir-fry garlic and tofu.\n4. Add shrimp and scrambled eggs.\n5. Mix in noodles and sauce.\n6. Toss in bean sprouts and peanuts.\n7. Serve with lime wedges.",
+//   "category": "thai",
+//   "image": {
+//     "name": "pad-thai.jpg",
+//     "data": "",
+//     "contentType": "image/jpeg"
+//   }
+// }
