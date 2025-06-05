@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { FaUtensils } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setFilterValue } from "./Redux/foodsListSlice"; // update path
+import { useNavigate } from "react-router-dom";
+
 export default function Foods() {
-  //  const [recipes, setRecipes] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchRecipes = async () => {
-  //     try {
-  //       const res = await fetch("http://192.168.1.68:3000/api/foods");
-  //       const data = await res.json();
-
-  //       if (data.success) {
-  //         setRecipes(data.recipes);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching recipes:", error);
-  //     }
-  //   };
-
-  //   fetchRecipes();
-  // }, []);
-
+  const dispatch = useDispatch();
+  const filterValue = useSelector((state) => state.filterFoods);
+  const navigate = useNavigate();
   const worldFoods = [
     {
       name: "Italian",
@@ -53,6 +41,11 @@ export default function Foods() {
     },
   ];
 
+  const Handle = (value) => {
+    dispatch(setFilterValue(value));
+    console.log("filterValue", filterValue);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white px-4 py-8">
       <div className="max-w-6xl mx-auto text-center">
@@ -75,7 +68,10 @@ export default function Foods() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 hover:cursor-pointer">
           {worldFoods.map((food, index) => (
             <div
-              // onClick={()=>Handle(food.)}
+              onClick={() => {
+                Handle(food.name);
+                navigate("/foodsrecipelist");
+              }}
               key={index}
               className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transform transition duration-300 hover:scale-103">
               {/* Image with zoom effect */}

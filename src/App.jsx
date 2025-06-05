@@ -10,6 +10,7 @@ import NewRecipe from "./Components/NewRecipe";
 import SubmitRecipes from "./Components/SubmitRecipes";
 import RecipeDetails from "./Components/RecipeDetails.jsx";
 import FoodsRecipeList from "./Components/FoodsRecipeList.jsx";
+import FoodsByCategory from "./Components/FoodsByCategory.jsx";
 function App() {
   return (
     <>
@@ -25,6 +26,8 @@ function App() {
             <Route path="/submitRecipes" element={<SubmitRecipes />} />
             <Route path="/recipe/:id" element={<RecipeDetails />} />
             <Route path="/foodsrecipelist" element={<FoodsRecipeList />} />
+            {/* <Route path="/foodsByCategory" element={<FoodsByCategory />} /> */}
+            <Route path="/foodsrecipelist/:id" element={<FoodsByCategory />} />
           </Routes>
           <Footer />
         </Router>
