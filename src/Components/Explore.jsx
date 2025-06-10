@@ -67,7 +67,8 @@ export default function Explore() {
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen></iframe>
-                  <div className="p-4">
+
+                  <div className="p-4 whitespace-nowrap">
                     <h3 className="text-lg font-semibold text-gray-800">
                       {video.title.length > 40
                         ? video.title.substring(0, 40) + "..."

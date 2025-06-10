@@ -49,7 +49,7 @@ export default function Foods() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-white px-4 py-8">
       <div className="max-w-6xl mx-auto text-center">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-lg">
             <span className="mr-2">🌍</span>
             <span className="bg-gradient-to-r from-green-600 via-yellow-500 to-red-500 text-transparent bg-clip-text">
@@ -70,7 +70,7 @@ export default function Foods() {
             <div
               onClick={() => {
                 Handle(food.name);
-                navigate("/foodsrecipelist");
+                navigate(`/foodsrecipelist?category=${food.name}`);
               }}
               key={index}
               className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transform transition duration-300 hover:scale-103">
@@ -84,7 +84,7 @@ export default function Foods() {
               </div>
 
               {/* Content */}
-              <div className="p-5 text-left bg-white">
+              <div className="p-3 text-left bg-white">
                 <div className="flex items-center gap-2 mb-2">
                   <FaUtensils className="text-green-600" />
                   <h3 className="text-xl font-semibold text-gray-800 group-hover:text-green-700 transition">
