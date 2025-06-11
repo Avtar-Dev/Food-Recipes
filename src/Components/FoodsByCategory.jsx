@@ -9,7 +9,7 @@ export default function RecipeDetails() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await fetch(`http://192.168.1.68:3000/api/foods/${id}`);
+        const res = await fetch(`http://192.168.1.6:3000/api/foods/${id}`);
         const data = await res.json();
 
         setRecipe(data.recipe);
@@ -32,11 +32,19 @@ export default function RecipeDetails() {
     <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Image */}
-        <div className="w-full h-64 md:h-96 overflow-hidden">
+        {/* <div className="w-full h-64 md:h-96 ">
           <img
             src={recipe.imageUrl}
             alt={recipe.name}
             className="w-full h-full object-cover"
+          />
+        </div> */}
+
+        <div className="w-full h-64 md:h-96 bg-white flex items-center justify-center">
+          <img
+            src={recipe.imageUrl}
+            alt={recipe.name}
+            className="w-full h-full object-contain object-center"
           />
         </div>
 

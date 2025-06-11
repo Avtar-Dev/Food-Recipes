@@ -1,41 +1,90 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loader from "./Loader";
+import Loader from "../Loader";
 
 const Debouncing = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
-  const fetchData = async () => {
-    setLoading(true);
-  };
-  useEffect(() => {
-    const tmOut = setTimeout(
-      async () => {
-        console.log("api hit", new Date());
 
-        try {
-          const response = await fetch(
-            `http://192.168.1.68:3000/api/recipes?q=${search}`
-          );
-          if (!response.ok)
+  // ✅ Debounced API call
+  useEffect(() => {
+    const tmOut = setTimeout(() => {
+      console.log("API hit at", new Date());
+
+      setLoading(true);
+      fetch(`http://192.168.1.6:3000/api/recipes?q=${search}`)
+        .then((response) => {
+          if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
-          const result = await response.json();
+          }
+          return response.json();
+        })
+        .then((result) => {
           setRecipes(result.recipes || []);
-        } catch (error) {
+        })
+        .catch((error) => {
           console.error("Error fetching data:", error);
-        } finally {
+        })
+        .finally(() => {
           setLoading(false);
-        }
-      },
-      !search == "" ? 2000 : 0
-    );
-    fetchData();
+        });
+    }, 1000); // delay 1 sec after typing stops
+
     return () => {
-      console.log("clearing timeout");
+      console.log("Clearing timeout");
       clearTimeout(tmOut);
     };
   }, [search]);
+
+  // ✅ Optional: Fetch all data once at start
+  useEffect(() => {
+    if (search === "") {
+      setLoading(true);
+      fetch(`http://192.168.1.6:3000/api/recipes`)
+        .then((res) => res.json())
+        .then((result) => {
+          setRecipes(result.recipes || []);
+        })
+        .catch((error) => {
+          console.error("Initial fetch error:", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, []);
+
+  //   const fetchData = async () => {
+  //   setLoading(true);
+  // };
+  // useEffect(() => {
+  //   const tmOut = setTimeout(
+  //     async () => {
+  //       console.log("api hit", new Date());
+
+  //       try {
+  //         const response = await fetch(
+  //           `http://192.168.1.68:3000/api/recipes?q=${search}`
+  //         );
+  //         if (!response.ok)
+  //           throw new Error(`HTTP error! status: ${response.status}`);
+  //         const result = await response.json();
+  //         setRecipes(result.recipes || []);
+  //       } catch (error) {
+  //         console.error("Error fetching data:", error);
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     },
+  //     !search == "" ? 2000 : 0
+  //   );
+  //   fetchData();
+  //   return () => {
+  //     console.log("clearing timeout");
+  //     clearTimeout(tmOut);
+  //   };
+  // }, [search]);
 
   const ChangeHandle = (e) => {
     setSearch(e.target.value);

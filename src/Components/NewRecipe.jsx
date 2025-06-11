@@ -29,7 +29,7 @@ export default function NewRecipe() {
     formData.append("category", recipe.category);
     formData.append("image", recipe.image); // file object
 
-    await fetch("http://192.168.1.68:3000/api/submitrecipe", {
+    await fetch("http://192.168.1.6:3000/api/submitrecipe", {
       method: "POST",
       body: formData,
     });
