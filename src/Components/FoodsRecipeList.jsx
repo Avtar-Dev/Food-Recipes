@@ -12,7 +12,7 @@ export default function FoodsRecipeList() {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const res = await fetch("http://192.168.1.6:3000/api/foods");
+        const res = await fetch("http://192.168.1.68:3000/api/foods");
         const data = await res.json();
 
         if (data.success) {

@@ -13,7 +13,7 @@ const Debouncing = () => {
       console.log("API hit at", new Date());
 
       setLoading(true);
-      fetch(`http://192.168.1.6:3000/api/recipes?q=${search}`)
+      fetch(`http://192.168.1.68:3000/api/recipes?q=${search}`)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,7 +41,7 @@ const Debouncing = () => {
   useEffect(() => {
     if (search === "") {
       setLoading(true);
-      fetch(`http://192.168.1.6:3000/api/recipes`)
+      fetch(`http://192.168.1.68:3000/api/recipes`)
         .then((res) => res.json())
         .then((result) => {
           setRecipes(result.recipes || []);
@@ -65,7 +65,7 @@ const Debouncing = () => {
 
   //       try {
   //         const response = await fetch(
-  //           `http://192.168.1.68:3000/api/recipes?q=${search}`
+  //           `http://192.168.1.688:3000/api/recipes?q=${search}`
   //         );
   //         if (!response.ok)
   //           throw new Error(`HTTP error! status: ${response.status}`);

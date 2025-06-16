@@ -9,7 +9,7 @@ export default function RecipeDetails() {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await fetch(`http://192.168.1.6:3000/api/foods/${id}`);
+        const res = await fetch(`http://192.168.1.68:3000/api/foods/${id}`);
         const data = await res.json();
 
         setRecipe(data.recipe);

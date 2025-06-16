@@ -10,7 +10,7 @@ export default function RecipeDetails() {
     const fetchRecipe = async () => {
       try {
         const res = await fetch(
-          `http://192.168.1.6:3000/api/submitrecipe/${id}`
+          `http://192.168.1.68:3000/api/submitrecipe/${id}`
         );
         const data = await res.json();
 

@@ -13,6 +13,7 @@ import FoodsRecipeList from "./Components/FoodsRecipeList.jsx";
 import FoodsByCategory from "./Components/FoodsByCategory.jsx";
 import Debouncing from "./Components/practice/Debouncing.jsx";
 import UserData from "./Components/practice/UserData.jsx";
+import Todo from "./Components/practice/Todo.jsx";
 function App() {
   return (
     <>
@@ -20,7 +21,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} />
             <Route path="/foods" element={<Foods />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/explore" element={<Explore />} />
@@ -28,9 +29,10 @@ function App() {
             <Route path="/submitRecipes" element={<SubmitRecipes />} />
             <Route path="/recipe/:id" element={<RecipeDetails />} />
             <Route path="/foodsrecipelist" element={<FoodsRecipeList />} />
-            <Route path="/foodsrecipelist/:id" element={<FoodsByCategory />} />
+            <Route path="/foodsrecipelist/:id" element={<FoodsByCategory />} /> */}
             {/* <Route path="/" element={<Debouncing />} /> */}
             {/* <Route path="/" element={<UserData />} /> */}
+            <Route path="/" element={<Todo />} />
           </Routes>
           <Footer />
         </Router>

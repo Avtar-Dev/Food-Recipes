@@ -18,7 +18,7 @@ export default function Explore() {
     const fetchRecipes = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://192.168.1.6:3000/api/youtube");
+        const res = await fetch("http://192.168.1.68:3000/api/youtube");
         const data = await res.json();
         if (data.success) {
           setVideos(data.recipes);
